@@ -1,33 +1,51 @@
-<script setup>
-import Checkbox from '@/Components/Checkbox.vue';
-import GuestLayout from '@/Layouts/GuestLayout.vue';
-import InputError from '@/Components/InputError.vue';
-import InputLabel from '@/Components/InputLabel.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
-import TextInput from '@/Components/TextInput.vue';
-import { Head, Link, useForm } from '@inertiajs/vue3';
+<script>
+    import Checkbox from '@/Components/Checkbox.vue';
+    import GuestLayout from '@/Layouts/GuestLayout.vue';
+    import InputError from '@/Components/InputError.vue';
+    import InputLabel from '@/Components/InputLabel.vue';
+    import TextInput from '@/Components/TextInput.vue';
+    import { Head, Link, useForm } from '@inertiajs/vue3';
+    import PrimaryButton from '@/Components/PrimaryButton.vue';
 
-defineProps({
-    canResetPassword: Boolean,
-    status: String,
-});
+    export default{
+        components: {
+            Checkbox,
+            GuestLayout,
+            InputError,
+            InputLabel,
+            Head,
+            useForm,
+            Link,
+            TextInput,
+            PrimaryButton
+        },
+        props: {
+            canResetPassword: Boolean,
+            status: String
+        },
+        methods: {
+            submit(){
+                form.post(route('login'), {
+                    onFinish: () => form.reset('password'),
+                });
+            }
+        },
+        data(){
+            return {
+                form: useForm({
+                    email: '',
+                    password: '',
+                    remember: false,
+                })
+            }
+        }
+    }
 
-const form = useForm({
-    email: '',
-    password: '',
-    remember: false,
-});
-
-const submit = () => {
-    form.post(route('login'), {
-        onFinish: () => form.reset('password'),
-    });
-};
 </script>
 
 <template>
     <GuestLayout>
-        <Head title="Log in" />
+        <Head title="Connexion" />
 
         <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
             {{ status }}
@@ -51,7 +69,7 @@ const submit = () => {
             </div>
 
             <div class="mt-4">
-                <InputLabel for="password" value="Password" />
+                <InputLabel for="password" value="Mot de passe" />
 
                 <TextInput
                     id="password"
@@ -68,7 +86,7 @@ const submit = () => {
             <div class="block mt-4">
                 <label class="flex items-center">
                     <Checkbox name="remember" v-model:checked="form.remember" />
-                    <span class="ml-2 text-sm text-gray-600 dark:text-gray-400">Remember me</span>
+                    <span class="ml-2 text-sm text-gray-600 dark:text-gray-400">Se souvenir de moi</span>
                 </label>
             </div>
 
@@ -78,11 +96,11 @@ const submit = () => {
                     :href="route('password.request')"
                     class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
                 >
-                    Forgot your password?
+                    Mot de passe oublié ?
                 </Link>
 
                 <PrimaryButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                    Log in
+                    Connexion
                 </PrimaryButton>
             </div>
         </form>
