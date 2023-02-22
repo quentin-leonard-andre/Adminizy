@@ -18,7 +18,7 @@
 <template>
     <Head title="Bienvenue" />
 
-    <div class="flex justify-end gap-3 p-3">
+    <div>
         <Link
             v-if="$page.props.auth.user"
             :href="route('dashboard')"

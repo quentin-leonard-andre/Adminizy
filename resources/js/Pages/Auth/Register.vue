@@ -3,7 +3,6 @@
     import InputError from '@/Components/InputError.vue';
     import InputLabel from '@/Components/InputLabel.vue';
     import PrimaryButton from '@/Components/PrimaryButton.vue';
-    import TextInput from '@/Components/TextInput.vue';
     import { Head, Link, useForm } from '@inertiajs/vue3';
 
     export default{
@@ -12,7 +11,6 @@
             InputError,
             InputLabel,
             PrimaryButton,
-            TextInput,
             Head,
             Link,
             useForm
@@ -46,7 +44,7 @@
             <div>
                 <InputLabel for="name" value="Nom" />
 
-                <TextInput
+                <input
                     id="name"
                     type="text"
                     v-model="form.name"
@@ -61,7 +59,7 @@
             <div>
                 <InputLabel for="email" value="Email" />
 
-                <TextInput
+                <input
                     id="email"
                     type="email"
                     v-model="form.email"
@@ -75,7 +73,7 @@
             <div class="mt-4">
                 <InputLabel for="password" value="Mot de passe" />
 
-                <TextInput
+                <input
                     id="password"
                     type="password"
                     v-model="form.password"
@@ -89,7 +87,7 @@
             <div class="mt-4">
                 <InputLabel for="password_confirmation" value="Confirmer le mot de passe" />
 
-                <TextInput
+                <input
                     id="password_confirmation"
                     type="password"
                     v-model="form.password_confirmation"
