@@ -5,6 +5,7 @@
     import InputLabel from '@/Components/InputLabel.vue';
     import { Head, Link, useForm } from '@inertiajs/vue3';
     import PrimaryButton from '@/Components/PrimaryButton.vue';
+    import Input from '@/Components/Input.vue';
 
     export default{
         components: {
@@ -14,7 +15,8 @@
             InputLabel,
             Head,
             Link,
-            PrimaryButton
+            PrimaryButton,
+            Input
         },
         props: {
             canResetPassword: Boolean,
@@ -42,9 +44,9 @@
 
 <template>
     <GuestLayout>
-        <Head title="Connexion" />
+        <Head title="Connexion"/>
 
-        <div class="bg-white p-4">
+        <div class="bg-white p-4 rounded-md">
             <div v-if="status">
                 {{ status }}
             </div>
@@ -55,35 +57,34 @@
             >
                 <div class="flex flex-col gap-2">
                     <InputLabel for="email" value="Email"/>
-
-                    <input
-                        id="email"
-                        type="email"
-                        v-model="form.email"
+                    
+                    <Input
+                        placeholder="Email ..."
                         required
-                        autofocus
-                        autocomplete="username"
+                        v-model="form.email"
+                        type="email"
+                        id="email"
                     />
 
-                    <InputError :message="form.errors.email" />
+                    <InputError :message="form.errors.email"/>
                 </div>
 
-                <div>
-                    <InputLabel for="password" value="Mot de passe" />
+                <div class="flex flex-col gap-2">
+                    <InputLabel for="password" value="Mot de passe"/>
 
-                    <input
-                        id="password"
-                        type="password"
-                        v-model="form.password"
+                    <Input
+                        placeholder="Mot de passe ..."
                         required
-                        autocomplete="current-password"
+                        v-model="form.password"
+                        type="password"
+                        id="password"
                     />
 
                     <InputError :message="form.errors.password" />
                 </div>
 
                 <div>
-                    <label>
+                    <label class="flex items-center gap-2">
                         <Checkbox name="remember" v-model:checked="form.remember" />
                         <span>Se souvenir de moi</span>
                     </label>
