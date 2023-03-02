@@ -46,7 +46,7 @@
     <GuestLayout>
         <Head title="Connexion"/>
 
-        <div class="bg-white p-4 rounded-md">
+        <div class="bg-white p-4 rounded-md max-w-full w-[500px]">
             <div v-if="status">
                 {{ status }}
             </div>
@@ -90,7 +90,9 @@
                     </label>
                 </div>
 
-                <div>
+                <div
+                    class="flex justify-between items-center flex-wrap"
+                >
                     <Link
                         v-if="canResetPassword"
                         :href="route('password.request')"
